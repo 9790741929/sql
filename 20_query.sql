@@ -69,10 +69,12 @@ SELECT * FROM dataset;
 update dataset set `ex category`= concat (`Category`,'-',`Sub-Category`);
 
 
--- 13. select the data shipped after 8/3/2015 and befor 1/10/2017
-SELECT `Ship Date`,`Order date`
-FROM dataset WHERE `Order Date`>='8-3-2015'
-and `Order Date`<='9-10-2017';
+-- 13. select the data shipped after 8/3/2015 and befor 1/10/2017 
+ SET SQL_SAFE_UPDATES = 0;
+UPDATE dataset SET `Order Date` = STR_TO_DATE(`Order Date`, '%m-%d-%Y');
+
+select * from dataset WHERE `Order Date`>='2015-3-8'
+and `Order Date`<='2017-10-1';  
 
 
 -- 14. find the most used customerID
